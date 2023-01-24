@@ -1,42 +1,42 @@
 from gpiozero import LED
 from time import sleep
 
-INPUT_A = LED(20)
-INPUT_B = LED(21)  # ab = 緑
-INPUT_C = LED(12)
-INPUT_D = LED(5)  # cd = 青
-INPUT_S = LED(4)  # +なら0、-なら1
+PI_INPUT_A = LED(20)
+PI_INPUT_B = LED(21)  # ab = 緑
+PI_INPUT_C = LED(12)
+PI_INPUT_D = LED(5)  # cd = 青
+PI_INPUT_S = LED(4)  # +なら0、-なら1
 
 
-# OUTPUT_X = LED()
-# OUTPUT_Y = LED()
-# OUTPUT_Z = LED()
+# PI_OUTPUT_X = LED()
+# PI_OUTPUT_Y = LED()
+# PI_OUTPUT_Z = LED()
 
 def pi_input(a, b, s, c, d):
     if a == '1':
-        INPUT_A.on()
+        PI_INPUT_A.on()
     else:
-        INPUT_A.off()
+        PI_INPUT_A.off()
 
     if b == '1':
-        INPUT_B.on()
+        PI_INPUT_B.on()
     else:
-        INPUT_B.off()
+        PI_INPUT_B.off()
 
     if s == '1':
-        INPUT_S.on()
+        PI_INPUT_S.on()
     else:
-        INPUT_S.off()
+        PI_INPUT_S.off()
 
     if c == '1':
-        INPUT_C.on()
+        PI_INPUT_C.on()
     else:
-        INPUT_C.off()
+        PI_INPUT_C.off()
 
     if d == '1':
-        INPUT_D.on()
+        PI_INPUT_D.on()
     else:
-        INPUT_D.off()
+        PI_INPUT_D.off()
     return
 
 

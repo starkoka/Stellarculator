@@ -21,6 +21,7 @@ def pi_input(a, b, s, c, d):
 
     if b == '1':
         PI_INPUT_B.on()
+        print('hogehoge')
     else:
         PI_INPUT_B.off()
 

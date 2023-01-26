@@ -7,6 +7,7 @@ PI_INPUT_C = LED(12)
 PI_INPUT_D = LED(5)  # cd = 青
 PI_INPUT_S = LED(4)  # +なら0、-なら1
 
+clock = 1
 
 # PI_OUTPUT_X = LED()
 # PI_OUTPUT_Y = LED()
@@ -37,8 +38,19 @@ def pi_input(a, b, s, c, d):
         PI_INPUT_D.on()
     else:
         PI_INPUT_D.off()
+        
     return
 
+def output():
+    x=0,y=0,z=0
+    if PI_OUTPUT_X:
+        x=1
+    if PI_OUTPUT_Y:
+        y=1
+    if PI_OUTPUT_Z:
+        z=1
+
+    return x,y,z
 
 while True:
     n = input('2ケタ±2ケタの計算式を入れてくれ')

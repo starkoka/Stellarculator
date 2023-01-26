@@ -3,7 +3,7 @@ from time import sleep
 
 PI_INPUT_A = LED(20)
 PI_INPUT_B = LED(21)  # ab = 緑
-PI_INPUT_C = LED(12)
+PI_INPUT_C = LED(18)
 PI_INPUT_D = LED(5)  # cd = 青
 PI_INPUT_S = LED(4)  # +なら0、-なら1
 
@@ -42,7 +42,7 @@ def pi_input(a, b, s, c, d):
     return
 
 def output():
-    x=0,y=0,z=0
+    x=0;y=0;z=0
     if PI_OUTPUT_X:
         x=1
     if PI_OUTPUT_Y:

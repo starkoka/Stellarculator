@@ -21,7 +21,6 @@ def pi_input(a, b, s, c, d):
 
     if b == '1':
         PI_INPUT_B.on()
-        print('hogehoge')
     else:
         PI_INPUT_B.off()
 
@@ -58,5 +57,4 @@ while True:
         S = 1
     else:
         S = 0
-    print(n[0] + n[1] + n[3] + n[4])
-    pi_input(int(n[0]), int(n[1]), S, int(n[3]), int(n[4]))
+    pi_input(n[0], n[1], S, n[3], n[4])

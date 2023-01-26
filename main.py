@@ -57,5 +57,5 @@ while True:
         S = 1
     else:
         S = 0
-    print(int(n[0]) + int(n[1]) + int(n[3]) + int(n[4]))
+    print(n[0] + n[1] + n[3] + n[4])
     pi_input(int(n[0]), int(n[1]), S, int(n[3]), int(n[4]))

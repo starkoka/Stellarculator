@@ -54,7 +54,7 @@ def output():
 while True:
     n = input('2ケタ±2ケタの計算式を入れてくれ')
     if n[2] == '-':
-        S = 1
+        S = '1'
     else:
-        S = 0
+        S = '0'
     pi_input(n[0], n[1], S, n[3], n[4])

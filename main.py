@@ -49,7 +49,6 @@ def output():
         y=1
     if PI_OUTPUT_Z:
         z=1
-
     return x,y,z
 
 while True:

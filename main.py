@@ -1,5 +1,6 @@
 from gpiozero import Button
 from time import sleep
+import csv
 
 
 def fulladder(a, b, x):  # 作成用関数
@@ -15,7 +16,7 @@ def fulladder(a, b, x):  # 作成用関数
 
 def twoadder(a, b, x, c, d):
     if x == 1:
-        b = (b - 1) * (-1)
+        c = (c - 1) * (-1)
         d = (d - 1) * (-1)
     n = fulladder(b, d, x)
     m = fulladder(a, c, n[0])
@@ -37,7 +38,13 @@ def allcheck():
                         r = twoadder(a, b, x, c, d)
                         print(str(r[0]) + str(r[1]) + str(r[2]))
 
+                        with open('output.csv', 'a') as f:
+                            writer = csv.writer(f)
+                            writer.writerow([str(a) + str(b) + X + str(c) + str(d) , str(r[0]) + str(r[1]) + str(r[2])])
 
 while True:
     q = input("何かを入力したら実行")
+    with open('output.csv', 'w') as f:
+        writer = csv.writer(f)
+        writer.writerow([])
     allcheck()

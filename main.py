@@ -10,8 +10,8 @@ PI_INPUT_S = LED(4)  # +なら0、-なら1
 
 clock = 1
 
-PI_OUTPUT_X = Button(22)
-PI_OUTPUT_Y = Button(26)
+PI_OUTPUT_X = Button(26)
+PI_OUTPUT_Y = Button(22)
 PI_OUTPUT_Z = Button(5)
 
 def pi_input(a, b, s, c, d):

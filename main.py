@@ -44,13 +44,10 @@ def pi_input(a, b, s, c, d):
 
 
 def output():
-    x = 0;
-    y = 0;
+    x = 0
+    y = 0
     z = 0
-    x = PI_OUTPUT_X
-    y = PI_OUTPUT_Y
-    z = PI_OUTPUT_Z
-
+    sleep(0.2)
     if PI_OUTPUT_X.is_pressed:
         x = 1
     if PI_OUTPUT_Y.is_pressed:

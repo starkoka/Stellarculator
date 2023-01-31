@@ -9,7 +9,7 @@ PI_INPUT_C = LED(15)
 PI_INPUT_D = LED(7)  # cd = 青
 PI_INPUT_S = LED(4)  # +なら0、-なら1
 
-clock = 0
+clock = 1
 
 PI_OUTPUT_X = Button(26)
 PI_OUTPUT_Y = Button(22)
@@ -92,6 +92,7 @@ def allcheck():
                         print(str(a) + str(b) + X + str(c) + str(d) + ' = ', end="")
                         r = twoadder(a, b, x, c, d)
                         pi_input(a,b,x,c,d)
+                        sleep(clock)
                         print(str(r[0]) + str(r[1]) + str(r[2]), end="  |  ")
                         o = pi_output()
                         print(str(o[0]) + str(o[1]) + str(o[2]))

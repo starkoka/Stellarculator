@@ -47,7 +47,7 @@ def output():
     x = 0
     y = 0
     z = 0
-    sleep(clock)
+    sleep(0)
     if PI_OUTPUT_X.is_pressed:
         x = 1
     if PI_OUTPUT_Y.is_pressed:

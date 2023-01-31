@@ -100,7 +100,7 @@ if a == '2':
                         for d in range(2):
                             print(str(a) + str(b) + X + str(c) + str(d) + ' = ', end="")
                             r = twoadder(a, b, x, c, d)
-                            pi_input(a, b, x, c, d)
+                            pi_input(str(a), str(b), str(x), str(c), str(d))
                             sleep(clock)
                             print(str(r[0]) + str(r[1]) + str(r[2]), end="  |  ")
                             o = pi_output()

@@ -91,15 +91,29 @@ def allcheck():
                     for d in range(2):
                         print(str(a) + str(b) + X + str(c) + str(d) + ' = ', end="")
                         r = twoadder(a, b, x, c, d)
-                        print(str(r[0]) + str(r[1]) + str(r[2]))
+                        pi_input(a,b,x,c,d)
+                        print(str(r[0]) + str(r[1]) + str(r[2]), end="  |  ")
+                        o = pi_output()
+                        print(str(o[0]) + str(o[1]) + str(o[2]))
 
                         with open('output.csv', 'a') as f:
                             writer = csv.writer(f)
-                            writer.writerow([str(a) + str(b) + X + str(c) + str(d) , str(r[0]) + str(r[1]) + str(r[2])])
+                            writer.writerow([str(a) + str(b) + X + str(c) + str(d) , str(r[0]) + str(r[1]) + str(r[2])],str(o[0]) + str(o[1]) + str(o[2]))
 
-while True:
-    q = input("何かを入力したら実行")
-    with open('output.csv', 'w') as f:
-        writer = csv.writer(f)
-        writer.writerow([])
-    allcheck()
+a = input("演算モードは1,確認モードは2を入れてください")
+if a == '2':
+    while True:
+        q = input("何かを入力したら実行")
+        with open('output.csv', 'w') as f:
+            writer = csv.writer(f)
+            writer.writerow([])
+        allcheck()
+else:
+    while True:
+        n = input('2ケタ±2ケタの計算式を入れてくれ')
+        if n[2] == '-':
+            S = '1'
+        else:
+            S = '0'
+        pi_input(n[0], n[1], S, n[3], n[4])
+        print(pi_output())

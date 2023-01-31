@@ -67,4 +67,4 @@ while True:
     else:
         S = '0'
     pi_input(n[0], n[1], S, n[3], n[4])
-    print("return：" + output())
+    print(output())

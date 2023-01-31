@@ -1,4 +1,5 @@
 from gpiozero import LED
+from gpiozero import Button
 from time import sleep
 
 PI_INPUT_A = LED(20)
@@ -9,9 +10,9 @@ PI_INPUT_S = LED(4)  # +なら0、-なら1
 
 clock = 1
 
-# PI_OUTPUT_X = LED()
-# PI_OUTPUT_Y = LED()
-# PI_OUTPUT_Z = LED()
+# PI_OUTPUT_X = Button()
+PI_OUTPUT_Y = Button(22)
+PI_OUTPUT_Z = Button(26)
 
 def pi_input(a, b, s, c, d):
     if a == '1':
@@ -43,11 +44,15 @@ def pi_input(a, b, s, c, d):
 
 def output():
     x=0;y=0;z=0
-    if PI_OUTPUT_X:
+    x = PI_OUTPUT_X
+    y = PI_OUTPUT_Y
+    z = PI_OUTPUT_Z
+
+    if PI_OUTPUT_X.is_pressed:
         x=1
-    if PI_OUTPUT_Y:
+    if PI_OUTPUT_Y.is_pressed:
         y=1
-    if PI_OUTPUT_Z:
+    if PI_OUTPUT_Z.is_pressed:
         z=1
     return x,y,z
 

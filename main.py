@@ -98,7 +98,7 @@ def allcheck():
 
                         with open('output.csv', 'a') as f:
                             writer = csv.writer(f)
-                            writer.writerow([str(a) + str(b) + X + str(c) + str(d) , str(r[0]) + str(r[1]) + str(r[2])],str(o[0]) + str(o[1]) + str(o[2]))
+                            writer.writerow([str(a) + str(b) + X + str(c) + str(d) , str(r[0]) + str(r[1]) + str(r[2])])
 
 a = input("演算モードは1,確認モードは2を入れてください")
 if a == '2':

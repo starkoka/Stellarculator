@@ -43,7 +43,7 @@ def pi_input(a, b, s, c, d):
     return
 
 
-def output():
+def pi_output():
     x = 0
     y = 0
     z = 0
@@ -64,4 +64,4 @@ while True:
     else:
         S = '0'
     pi_input(n[0], n[1], S, n[3], n[4])
-    print(output())
+    print(pi_output())

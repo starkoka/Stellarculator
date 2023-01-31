@@ -10,9 +10,9 @@ PI_INPUT_S = LED(4)  # +なら0、-なら1
 
 clock = 1
 
-# PI_OUTPUT_X = Button()
-PI_OUTPUT_Y = Button(22)
-PI_OUTPUT_Z = Button(26)
+PI_OUTPUT_X = Button(22)
+PI_OUTPUT_Y = Button(26)
+# PI_OUTPUT_Z = Button(26)
 
 def pi_input(a, b, s, c, d):
     if a == '1':
@@ -63,3 +63,4 @@ while True:
     else:
         S = '0'
     pi_input(n[0], n[1], S, n[3], n[4])
+    print("return：" + output())

@@ -79,27 +79,8 @@ def twoadder(a, b, x, c, d):
     return m[0], m[1], n[1]
 
 
-def allcheck():
-    for x in range(2):
-        if x == 0:
-            X = '+'
-        else:
-            X = '-'
-        for a in range(2):
-            for b in range(2):
-                for c in range(2):
-                    for d in range(2):
-                        print(str(a) + str(b) + X + str(c) + str(d) + ' = ', end="")
-                        r = twoadder(a, b, x, c, d)
-                        pi_input(a,b,x,c,d)
-                        sleep(clock)
-                        print(str(r[0]) + str(r[1]) + str(r[2]), end="  |  ")
-                        o = pi_output()
-                        print(str(o[0]) + str(o[1]) + str(o[2]))
+#def allcheck():
 
-                        with open('output.csv', 'a') as f:
-                            writer = csv.writer(f)
-                            writer.writerow([str(a) + str(b) + X + str(c) + str(d) , str(r[0]) + str(r[1]) + str(r[2])])
 
 a = input("演算モードは1,確認モードは2を入れてください")
 if a == '2':
@@ -108,7 +89,26 @@ if a == '2':
         with open('output.csv', 'w') as f:
             writer = csv.writer(f)
             writer.writerow([])
-        allcheck()
+        for x in range(2):
+            if x == 0:
+                X = '+'
+            else:
+                X = '-'
+            for a in range(2):
+                for b in range(2):
+                    for c in range(2):
+                        for d in range(2):
+                            print(str(a) + str(b) + X + str(c) + str(d) + ' = ', end="")
+                            r = twoadder(a, b, x, c, d)
+                            pi_input(a, b, x, c, d)
+                            sleep(clock)
+                            print(str(r[0]) + str(r[1]) + str(r[2]), end="  |  ")
+                            o = pi_output()
+                            print(str(o[0]) + str(o[1]) + str(o[2]))
+
+                            with open('output.csv', 'a') as f:
+                                writer = csv.writer(f)
+                                writer.writerow([str(a) + str(b) + X + str(c) + str(d), str(r[0]) + str(r[1]) + str(r[2])])
 else:
     while True:
         n = input('2ケタ±2ケタの計算式を入れてくれ')

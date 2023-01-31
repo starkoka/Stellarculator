@@ -1,6 +1,7 @@
 from gpiozero import LED
 from gpiozero import Button
 from time import sleep
+import csv
 
 PI_INPUT_A = LED(20)
 PI_INPUT_B = LED(21)  # ab = 緑
@@ -57,11 +58,48 @@ def pi_output():
     return x, y, z
 
 
-while True:
-    n = input('2ケタ±2ケタの計算式を入れてくれ')
-    if n[2] == '-':
-        S = '1'
+def fulladder(a, b, x):  # 作成用関数
+    if a + b + x == 0:
+        return 0, 0
+    elif a + b + x == 1:
+        return 0, 1
+    elif a + b + x == 2:
+        return 1, 0
     else:
-        S = '0'
-    pi_input(n[0], n[1], S, n[3], n[4])
-    print(pi_output())
+        return 1, 1
+
+
+def twoadder(a, b, x, c, d):
+    if x == 1:
+        c = (c - 1) * (-1)
+        d = (d - 1) * (-1)
+    n = fulladder(b, d, x)
+    m = fulladder(a, c, n[0])
+
+    return m[0], m[1], n[1]
+
+
+def allcheck():
+    for x in range(2):
+        if x == 0:
+            X = '+'
+        else:
+            X = '-'
+        for a in range(2):
+            for b in range(2):
+                for c in range(2):
+                    for d in range(2):
+                        print(str(a) + str(b) + X + str(c) + str(d) + ' = ', end="")
+                        r = twoadder(a, b, x, c, d)
+                        print(str(r[0]) + str(r[1]) + str(r[2]))
+
+                        with open('output.csv', 'a') as f:
+                            writer = csv.writer(f)
+                            writer.writerow([str(a) + str(b) + X + str(c) + str(d) , str(r[0]) + str(r[1]) + str(r[2])])
+
+while True:
+    q = input("何かを入力したら実行")
+    with open('output.csv', 'w') as f:
+        writer = csv.writer(f)
+        writer.writerow([])
+    allcheck()

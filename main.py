@@ -8,7 +8,7 @@ PI_INPUT_C = LED(15)
 PI_INPUT_D = LED(7)  # cd = 青
 PI_INPUT_S = LED(4)  # +なら0、-なら1
 
-clock = 1
+clock = 0
 
 PI_OUTPUT_X = Button(26)
 PI_OUTPUT_Y = Button(22)
@@ -47,7 +47,7 @@ def output():
     x = 0
     y = 0
     z = 0
-    sleep(0.2)
+    sleep(clock)
     if PI_OUTPUT_X.is_pressed:
         x = 1
     if PI_OUTPUT_Y.is_pressed:

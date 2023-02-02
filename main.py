@@ -92,14 +92,14 @@ def allcheck():
                         print(str(a) + str(b) + X + str(c) + str(d) + ' = ', end="")
                         r = twoadder(a, b, x, c, d)
                         print(str(r[0]) + str(r[1]) + str(r[2]))
-
-                        with open('output.csv', 'a') as f:
-                            writer = csv.writer(f)
-                            writer.writerow([str(a) + str(b) + X + str(c) + str(d) , str(r[0]) + str(r[1]) + str(r[2])])
+                        #
+                        # with open('output.csv', 'a') as f:
+                        #     writer = csv.writer(f)
+                        #     writer.writerow([str(a) + str(b) + X + str(c) + str(d) , str(r[0]) + str(r[1]) + str(r[2])])
 
 while True:
     q = input("何かを入力したら実行")
-    with open('output.csv', 'w') as f:
-        writer = csv.writer(f)
-        writer.writerow([])
+    # with open('output.csv', 'w') as f:
+    #     writer = csv.writer(f)
+    #     writer.writerow([])
     allcheck()

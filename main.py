@@ -1,12 +1,11 @@
 from gpiozero import LED
 from gpiozero import Button
 from time import sleep
-import csv
 
-#PI_INPUT_A = LED(20)
-#PI_INPUT_B = LED(21)  # ab = 緑
-#PI_INPUT_C = LED(7)
-#PI_INPUT_D = LED(15)  # cd = 青
+#PI_INPUT_A = LED(15)
+#PI_INPUT_B = LED(7)  # ab = 緑 ※修正前は逆になる
+#PI_INPUT_C = LED(20)
+#PI_INPUT_D = LED(21)  # cd = 青　※修正前は逆になる
 #PI_INPUT_S = LED(4)  # +なら0、-なら1
 
 clock = 0.05
@@ -48,7 +47,7 @@ def pi_output():
     x = 0
     y = 0
     z = 0
-    sleep(0)
+    sleep(clock)
     if PI_OUTPUT_X.is_pressed:
         x = 1
     if PI_OUTPUT_Y.is_pressed:
@@ -83,7 +82,23 @@ def twoadder(a, b, x, c, d):
 
     return str(m[0]), str(m[1]), str(n[1])
 
-#def allcheck():
+def allcheck():
+    for x in range(2):
+        if x == 0:
+            X = '+'
+        else:
+            X = '-'
+        for a in range(2):
+            for b in range(2):
+                for c in range(2):
+                    for d in range(2):
+                        print(str(a) + str(b) + X + str(c) + str(d) + ' = ', end="")
+                        r = twoadder(a, b, x, c, d)
+                        pi_input(str(a), str(b), str(x), str(c), str(d))
+                        sleep(clock)
+                        print(str(r[0]) + str(r[1]) + str(r[2]), end="  |  ")
+                        o = pi_output()
+                        print(str(o[0]) + str(o[1]) + str(o[2]))
 
 def add(add1,add2):
     if len(add1) < len(add2):
@@ -116,33 +131,15 @@ def add(add1,add2):
         result = result + output[i]
     return result
 
+
+
+
 a = input("演算モードは1,確認モードは2を入れてください")
 if a == '2':
     while True:
         q = input("何かを入力したら実行")
-        with open('output.csv', 'w') as f:
-            writer = csv.writer(f)
-            writer.writerow([])
-        for x in range(2):
-            if x == 0:
-                X = '+'
-            else:
-                X = '-'
-            for a in range(2):
-                for b in range(2):
-                    for c in range(2):
-                        for d in range(2):
-                            print(str(a) + str(b) + X + str(c) + str(d) + ' = ', end="")
-                            r = twoadder(a, b, x, c, d)
-                            pi_input(str(a), str(b), str(x), str(c), str(d))
-                            sleep(clock)
-                            print(str(r[0]) + str(r[1]) + str(r[2]), end="  |  ")
-                            o = pi_output()
-                            print(str(o[0]) + str(o[1]) + str(o[2]))
+        allcheck()
 
-                            with open('output.csv', 'a') as f:
-                                writer = csv.writer(f)
-                                writer.writerow([str(a) + str(b) + X + str(c) + str(d), str(r[0]) + str(r[1]) + str(r[2]),str(o[0]) + str(o[1]) + str(o[2])])
 else:
     while True:
         n = str(format(int(input("足す数を入力")), 'b'))

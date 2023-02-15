@@ -117,7 +117,10 @@ def add(add1,add2):
             add3 = [add1[len(add1) - (i * 2) - 2],add1[len(add1) - (i * 2) - 1]]
             next_kuriagari = '0'
         else:
-            adder = twoadder(add1[len(add1) - (i * 2) - 2],add1[len(add1) - (i * 2) - 1],'0','0','1')
+            if i%2 == 0 : #片方だけが01を頻繁に入力することを避けるコード
+                adder = twoadder(add1[len(add1) - (i * 2) - 2], add1[len(add1) - (i * 2) - 1], '0', '0', '1')
+            else:
+                adder = twoadder('0', '1', '0',add1[len(add1) - (i * 2) - 2], add1[len(add1) - (i * 2) - 1])
             add3 = [adder[1],adder[2]]
             next_kuriagari = adder[0]
         adder = twoadder(add3[0],add3[1],'0',add2[len(add2) - (i * 2) - 2],add2[len(add2) - (i * 2) - 1])

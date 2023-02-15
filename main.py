@@ -129,12 +129,16 @@ def add(add1,add2):
         output.insert(0,adder[1])
         kuriagari = max(adder[0],next_kuriagari)
     output.insert(0,kuriagari)
-    result = ""
+    add_result = ""
     for i in range(len(output)):
-        result = result + output[i]
-    return result
+        add_result = add_result + output[i]
+    return add_result
 
-
+def multi(multi1,multi2):
+    multi_result = 0
+    for i in range(int(multi2,2)):
+        multi_result = add(multi_result,multi1)
+    return multi_result
 
 
 a = input("演算モードは1,確認モードは2を入れてください")

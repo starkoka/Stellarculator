@@ -60,28 +60,9 @@ def pi_output(): #ラズパイ出力用関数
     return str(x), str(y), str(z)
 
 def clock():
-    mode = input("自分でクロック数を決定するには1を、クロックチューニングするには2を、標準クロックを使うにはそれ以外の入力をしてください")
+    mode = input("自分でクロック数を決定するには1を、標準クロックを使うにはそれ以外の入力をしてください")
     if mode == '1':
         c = float(input("クロック数を入力"))
-    elif mode == '2':
-        if CHANGE_EI == 1:
-            c = 0.05
-            j = 1
-            result = 625
-            while result == 625:
-                i += 1
-                d = c
-                c = '0.'
-                for i in range(j):
-                    c = c + '0'
-                c = c + '5'
-                c = float(c)
-                print(c)
-                result = multi('11001', '11001')
-            c = d
-        else:
-            print("回路モードになっていません。標準設定を使います")
-            c = 0.05
     else:
         c = 0.05
     return c

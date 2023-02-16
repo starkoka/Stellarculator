@@ -217,6 +217,6 @@ if a == '2':
 
 else:
     while True:
-        n = str(format(int(input("入力1")), 'b'))
-        m = str(format(int(input("入力2")), 'b'))
+        n = str(format(int(input("入力1：")), 'b'))
+        m = str(format(int(input("入力2：")), 'b'))
         print(subtract(n,m))

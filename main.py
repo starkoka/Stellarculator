@@ -1,6 +1,8 @@
 from gpiozero import LED
 from gpiozero import Button
 from time import sleep
+import numpy
+import math
 
 clock = 0.05
 CHANGE_EI= 0 #0なら内蔵、1なら外付け
@@ -149,8 +151,11 @@ def add(add1,add2):
 
 
 def multi(multi1,multi2):
-    multi_result = '0'
-    for i in range(int(multi2,2)):
+    multi_result = multi1
+    loop = len(str(bin(int(multi2,2)))[2:])-1 #multi2に含まれる最大の2の乗数を求める
+    for i in range(int(loop)):
+        multi_result = add(multi_result,multi_result)
+    for i in range():
         multi_result = add(multi_result,multi1)
     return multi_result
 

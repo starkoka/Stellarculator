@@ -2,14 +2,14 @@ from gpiozero import LED
 from gpiozero import Button
 from time import sleep
 
-clock = 0.05
+bitclock = 0.05
 CHANGE_EI= 0 #0なら内蔵、1なら外付け
 
 if CHANGE_EI == 1:
     PI_INPUT_A = LED(15)
-    PI_INPUT_B = LED(7)  # ab = 緑 ※修正前は逆になる
+    PI_INPUT_B = LED(7)  # ab = 緑
     PI_INPUT_C = LED(20)
-    PI_INPUT_D = LED(21)  # cd = 青　※修正前は逆になる
+    PI_INPUT_D = LED(21)  # cd = 青
     PI_INPUT_S = LED(4)  # +なら0、-なら1
 
     PI_OUTPUT_X = Button(26)
@@ -50,7 +50,7 @@ def pi_output(): #ラズパイ出力用関数
     x = 0
     y = 0
     z = 0
-    sleep(clock)
+    sleep(bitclock)
     if PI_OUTPUT_X.is_pressed:
         x = 1
     if PI_OUTPUT_Y.is_pressed:
@@ -59,6 +59,24 @@ def pi_output(): #ラズパイ出力用関数
         z = 1
     return str(x), str(y), str(z)
 
+def clock():
+    mode = input("自分でクロック数を決定するには1を、クロックチューニングするには2を、標準クロックを使うにはそれ以外の入力をしてください")
+    if mode == '1':
+        c = float(input("クロック数を入力"))
+    elif mode == '2':
+        if CHANGE_EI == 1:
+            c = 0.05
+            result = 625
+            while result == 625:
+                c = c / 2
+                result = multi('11001', '11001')
+            c = c * 2
+        else:
+            print("回路モードになっていません。標準設定を使います")
+            c = 0.05
+    else:
+        c = 0.05
+    return c
 
 def fulladder(a, b, x):  # 内蔵1bit加減算機
     if a + b + x == 0:
@@ -209,35 +227,36 @@ def subtract(sub1,sub2):
         sub_result = int(sub_result, 2)
     return sub_result
 
-a = input("演算モードは1,確認モードは2を入れてください")
-if a == '2':
-    while True:
-        q = input("何かを入力したら実行")
+bitclock = clock()
+while True:
+    a = input("演算モードは1,確認モードは2、クロック決定モードは3を入れてください")
+    if a == '2':
         allcheck()
+    elif a == '3':
+        bitclock = clock()
+    else:
+        while True:
+            text = input("式を入力")
+            nm = 0
+            n = ''
+            m = ''
+            mark = ''
 
-else:
-    while True:
-        text = input("式を入力")
-        nm = 0
-        n = ''
-        m = ''
-        mark = ''
+            for i in range(len(text)):
+                if text[i] == '+' or text[i] == '-' or text[i] == '*':
+                    nm = 1
+                    mark = text[i]
+                elif nm == 1:
+                    m = m + text[i]
+                else:
+                    n = n + text[i]
 
-        for i in range(len(text)):
-            if text[i] == '+' or text[i] == '-' or text[i] == '*':
-                nm = 1
-                mark = text[i]
-            elif nm == 1:
-                m = m + text[i]
-            else:
-                n = n + text[i]
-
-        n = str(format(int(n), 'b'))
-        m = str(format(int(m), 'b'))
-        if mark == '*':
-            print(multi(n, m))
-        elif mark == '+':
-            print(add(n, m))
-        elif mark == '-':
-            print(subtract(n, m))
+            n = str(format(int(n), 'b'))
+            m = str(format(int(m), 'b'))
+            if mark == '*':
+                print(multi(n, m))
+            elif mark == '+':
+                print(add(n, m))
+            elif mark == '-':
+                print(subtract(n, m))
 

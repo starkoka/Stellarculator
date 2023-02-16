@@ -163,7 +163,7 @@ def multi(multi1,multi2):
         multi_result = '0'
         for i in range(int(multi2, 2)):
             multi_result = add(multi_result, multi1)
-        return int(multi_result,2)
+        return int(str(multi_result),2)
 
 def subtract(sub1,sub2):
     if len(sub1) < len(sub2):
@@ -217,6 +217,27 @@ if a == '2':
 
 else:
     while True:
-        n = str(format(int(input("入力1：")), 'b'))
-        m = str(format(int(input("入力2：")), 'b'))
-        print(subtract(n,m))
+        text = input("式を入力")
+        nm = 0
+        n = ''
+        m = ''
+        mark = ''
+
+        for i in range(len(text)):
+            if text[i] == '+' or text[i] == '-' or text[i] == '*':
+                nm = 1
+                mark = text[i]
+            elif nm == 1:
+                n = n + text[i]
+            else:
+                m = m + text[i]
+
+        n = str(format(int(n), 'b'))
+        m = str(format(int(m), 'b'))
+        if mark == '*':
+            print(multi(n, m))
+        elif mark == '+':
+            print(add(n, m))
+        elif mark == '-':
+            print(subtract(n, m))
+

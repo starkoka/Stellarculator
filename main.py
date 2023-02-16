@@ -66,11 +66,19 @@ def clock():
     elif mode == '2':
         if CHANGE_EI == 1:
             c = 0.05
+            j = 1
             result = 625
             while result == 625:
-                c = c / 2
+                i += 1
+                d = c
+                c = '0.'
+                for i in range(j):
+                    c = c + '0'
+                c = c + '5'
+                c = float(c)
+                print(c)
                 result = multi('11001', '11001')
-            c = c * 2
+            c = d
         else:
             print("回路モードになっていません。標準設定を使います")
             c = 0.05

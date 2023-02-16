@@ -228,9 +228,9 @@ else:
                 nm = 1
                 mark = text[i]
             elif nm == 1:
-                n = n + text[i]
-            else:
                 m = m + text[i]
+            else:
+                n = n + text[i]
 
         n = str(format(int(n), 'b'))
         m = str(format(int(m), 'b'))

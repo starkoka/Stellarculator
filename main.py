@@ -1,8 +1,6 @@
 from gpiozero import LED
 from gpiozero import Button
 from time import sleep
-import numpy
-import math
 
 clock = 0.05
 CHANGE_EI= 0 #0なら内蔵、1なら外付け
@@ -116,6 +114,9 @@ def allcheck(): #外付け回路動作チェック関数
         print("内蔵モードになっています！")
 
 def add(add1,add2):
+    add1 = str(add1)
+    add2 = str(add2)
+
     if len(add1) < len(add2):#add1のほうが大きくなるように調整
         add1, add2 = add2, add1
 

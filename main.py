@@ -153,11 +153,17 @@ def add(add1,add2):
 def multi(multi1,multi2):
     multi_result = multi1
     loop = len(str(bin(int(multi2,2)))[2:])-1 #multi2に含まれる最大の2の乗数を求める
-    for i in range(int(loop)):
-        multi_result = add(multi_result,multi_result)
-    for i in range():
-        multi_result = add(multi_result,multi1)
-    return multi_result
+    if loop != 0:
+        for i in range(int(loop)):
+            multi_result = add(multi_result, multi_result)
+        remaining = multi(multi1, str(format(int(multi2, 2) - 2 ** loop, 'b')))
+        multi_result = add(multi_result, remaining)
+        return multi_result
+    else:
+        multi_result = '0'
+        for i in range(int(multi2, 2)):
+            multi_result = add(multi_result, multi1)
+        return multi_result
 
 
 a = input("演算モードは1,確認モードは2を入れてください")

@@ -116,11 +116,10 @@ def allcheck(): #外付け回路動作チェック関数
 def add(add1,add2):
     add1 = str(add1)
     add2 = str(add2)
-
-    if len(add1) < len(add2):#add1のほうが大きくなるように調整
+    if len(add1) < len(add2):
         add1, add2 = add2, add1
 
-    for i in range(len(add1) - len(add2)): #add1とadd2の長さをそろえる
+    for i in range(len(add1) - len(add2)):
         add2 = '0' + add2
     if len(add1) % 2 == 1:
         add1 = '0' + add1
@@ -156,14 +155,14 @@ def multi(multi1,multi2):
     loop = len(str(bin(int(multi2,2)))[2:])-1 #multi2に含まれる最大の2の乗数を求める
     if loop != 0:
         for i in range(int(loop)):
-            multi_result = add(multi_result, multi_result)
-        remaining = multi(multi1, str(format(int(multi2, 2) - 2 ** loop, 'b')))
-        multi_result = add(multi_result, remaining)
-        return multi_result
+            multi_result = int(format(add(multi_result, multi_result), 'b'))
+        remaining = int(format(multi(multi1, str(format(int(multi2, 2) - 2 ** loop, 'b'))), 'b'))
+        multi_result = int(format(add(multi_result, remaining), 'b'))
+        return int(str(multi_result),2)
     else:
         multi_result = '0'
         for i in range(int(multi2, 2)):
-            multi_result = add(multi_result, multi1)
+            multi_result = int(format(add(multi_result, multi1), 'b'))
         return int(str(multi_result),2)
 
 def subtract(sub1,sub2):
@@ -202,7 +201,7 @@ def subtract(sub1,sub2):
                 sub_result = sub_result + '1'
             else:
                 sub_result = sub_result + '0'
-        sub_result = add(sub_result, '1')
+        sub_result = int(format(add(sub_result, '1'), 'b'),2)
         sub_result = 0-sub_result
     else:
         for i in range(len(output)):

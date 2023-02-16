@@ -116,10 +116,10 @@ def allcheck(): #外付け回路動作チェック関数
         print("内蔵モードになっています！")
 
 def add(add1,add2):
-    if len(add1) < len(add2):
+    if len(add1) < len(add2):#add1のほうが大きくなるように調整
         add1, add2 = add2, add1
 
-    for i in range(len(add1) - len(add2)):
+    for i in range(len(add1) - len(add2)): #add1とadd2の長さをそろえる
         add2 = '0' + add2
     if len(add1) % 2 == 1:
         add1 = '0' + add1
@@ -147,7 +147,7 @@ def add(add1,add2):
     add_result = ""
     for i in range(len(output)):
         add_result = add_result + output[i]
-    return add_result
+    return int(add_result,2)
 
 
 def multi(multi1,multi2):
@@ -163,8 +163,51 @@ def multi(multi1,multi2):
         multi_result = '0'
         for i in range(int(multi2, 2)):
             multi_result = add(multi_result, multi1)
-        return multi_result
+        return int(multi_result,2)
 
+def subtract(sub1,sub2):
+    if len(sub1) < len(sub2):
+        for i in range(len(sub2) - len(sub1)):
+            sub1 = '0' + sub1
+    else:
+        for i in range(len(sub1) - len(sub2)):
+            sub2 = '0' + sub2
+    complement = 0
+    if len(sub1) % 2 == 1:
+        sub1 = '0' + sub1
+        sub2 = '0' + sub2
+        complement = 1
+
+    output = []
+    maegari = '1'
+    for i in range(len(sub1) // 2):
+        if maegari == '1':
+            sub3 = [sub1[len(sub1) - (i * 2) - 2],sub1[len(sub1) - (i * 2) - 1]]
+            next_maegari = 1
+        else:
+            sub = adderfunc(sub1[len(sub1) - (i * 2) - 2],sub1[len(sub1) - (i * 2) - 1],'1','0','1')
+            sub3 = [sub[1],sub[2]]
+            next_maegari = int(sub[0])
+        subtraction = adderfunc(sub3[0],sub3[1],'1',sub2[len(sub2) - (i * 2) - 2],sub2[len(sub2) - (i * 2) - 1])
+
+        output.insert(0, subtraction[2])
+        output.insert(0, subtraction[1])
+        maegari = str(min(int(subtraction[0]), next_maegari))
+    sub_result = ""
+
+    if maegari == '0':
+        for i in range(len(output) - complement):
+            if output[i + complement] == '0':
+                sub_result = sub_result + '1'
+            else:
+                sub_result = sub_result + '0'
+        sub_result = add(sub_result, '1')
+        sub_result = 0-sub_result
+    else:
+        for i in range(len(output)):
+            sub_result = sub_result + output[i]
+        sub_result = int(sub_result, 2)
+    return sub_result
 
 a = input("演算モードは1,確認モードは2を入れてください")
 if a == '2':
@@ -174,6 +217,6 @@ if a == '2':
 
 else:
     while True:
-        n = str(format(int(input("足す数を入力")), 'b'))
-        m = str(format(int(input("足される数を入力")), 'b'))
-        print(int(multi(n,m),2))
+        n = str(format(int(input("入力1")), 'b'))
+        m = str(format(int(input("入力2")), 'b'))
+        print(subtract(n,m))

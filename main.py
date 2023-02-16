@@ -57,7 +57,7 @@ def pi_output(): #ラズパイ出力用関数
         y = 1
     if PI_OUTPUT_Z.is_pressed:
         z = 1
-    return x, y, z
+    return str(x), str(y), str(z)
 
 
 def fulladder(a, b, x):  # 内蔵1bit加減算機

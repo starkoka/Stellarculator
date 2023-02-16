@@ -113,7 +113,7 @@ def allcheck(): #外付け回路動作チェック関数
                             print(str(a) + str(b) + X + str(c) + str(d) + ' = ', end="")
                             r = twoadder(a, b, x, c, d)
                             pi_input(str(a), str(b), str(x), str(c), str(d))
-                            sleep(clock)
+                            sleep(bitclock)
                             print(str(r[0]) + str(r[1]) + str(r[2]), end="  |  ")
                             o = pi_output()
                             print(str(o[0]) + str(o[1]) + str(o[2]))

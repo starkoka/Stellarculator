@@ -3,7 +3,7 @@ from gpiozero import Button
 from time import sleep
 
 bitclock = 0.05
-CHANGE_EI= 0 #0なら内蔵、1なら外付け
+CHANGE_EI= 1 #0なら内蔵、1なら外付け
 
 if CHANGE_EI == 1:
     PI_INPUT_A = LED(15)
@@ -225,7 +225,7 @@ while True:
         bitclock = clock()
     else:
         while True:
-            text = input("式を入力")
+            text = input("式を入力(2つの数字の足し算・引き算・掛け算に対応)")
             nm = 0
             n = ''
             m = ''
